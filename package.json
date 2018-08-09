@@ -4,7 +4,8 @@
   "description": "This app scrapes web development keywords from Indeed to provide industry market analysis in various locales.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "author": "Chris Jones",
   "license": "MIT",
