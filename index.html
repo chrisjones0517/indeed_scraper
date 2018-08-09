@@ -5,54 +5,75 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="myLogo.png">
     <title>Document</title>
-    <style>h1 {text-align: center;}</style>
+    <style>
+        h1,
+        h2 {
+            text-align: center;
+        }
+
+        img {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Keyword Data from Indeed for "Web Developer"</h1>
+    <div>
+        <h1>Keyword Data from Indeed for "Web Developer"</h1>
+        <h2>Please wait while your request is being processed.</h2>
+        <img src="ajax-loader.gif">
+    </div>
     <canvas id="myChart" width="400" height="400"></canvas>
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
     <script>
         let scrapedData;
-        $.get('http://localhost:3000/data', (data) => {
-            scrapedData = data;
-        }).then(() => {
-            scrapedData.sort((a, b) => {
-                return b[0] - a[0];
-            });
-            
-            let myLabels = [];
-            let myData = [];
-            scrapedData.map((el) => {
-                myLabels.push(el[1]);
-                myData.push(el[0]);
-            });
-            
-            let ctx = document.getElementById("myChart").getContext('2d');
-            let myChart = new Chart(ctx, {
-                type: 'bar',
-                data: {
-                    labels: myLabels,
-                    datasets: [{
-                        label: 'Number of Keyword Instances',
-                        data: myData,
-                        backgroundColor: 'rgba(0, 0, 255, 1)'
-                    }]
-                },
-                options: {
-                    scales: {
-                        yAxes: [{
-                            ticks: {
-                                beginAtZero: true
-                            }
+
+        setTimeout(() => {
+            $('h2').remove();
+            $('img').remove();
+            $.get('http://localhost:3000/data', (data) => {
+                scrapedData = data;
+            }).then(() => {
+                scrapedData.sort((a, b) => {
+                    return b[0] - a[0];
+                });
+
+                let myLabels = [];
+                let myData = [];
+                scrapedData.map((el) => {
+                    myLabels.push(el[1]);
+                    myData.push(el[0]);
+                });
+
+                let ctx = document.getElementById("myChart").getContext('2d');
+                let myChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: myLabels,
+                        datasets: [{
+                            label: 'Number of Keyword Instances',
+                            data: myData,
+                            backgroundColor: 'rgba(0, 0, 255, 1)'
                         }]
+                    },
+                    options: {
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
                     }
-                }
+                });
             });
-        });
+        }, 45000);
     </script>
 </body>
 
