@@ -1,0 +1,16 @@
+{
+  "name": "indeed_scraper",
+  "version": "1.0.0",
+  "description": "This app scrapes web development keywords from Indeed to provide industry market analysis in various locales.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chris Jones",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.3",
+    "nightmare": "^3.0.1",
+    "vo": "^4.0.2"
+  }
+}
