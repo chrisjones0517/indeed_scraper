@@ -20,12 +20,10 @@
         $.get('http://localhost:3000/data', (data) => {
             scrapedData = data;
         }).then(() => {
-            console.log(typeof scrapedData);
-            console.log(scrapedData);
             scrapedData.sort((a, b) => {
                 return b[0] - a[0];
             });
-            console.log(scrapedData);
+            
             let myLabels = [];
             let myData = [];
             scrapedData.map((el) => {
