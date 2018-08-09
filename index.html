@@ -1,22 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>h1 {text-align: center;}</style>
 </head>
-<body>
-    <h1>test page</h1>
-    <script>
-        const http = new XMLHttpRequest();
-        const url = 'http://localhost:3000/data';
-        http.open("GET", url);
-        http.send();
 
-        http.onreadystatechange = (e) => {
-            console.log(http.responseText);
-        }
+<body>
+    <h1>Keyword Data from Indeed for "Web Developer"</h1>
+    <canvas id="myChart" width="400" height="400"></canvas>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+    <script>
+        let scrapedData;
+        $.get('http://localhost:3000/data', (data) => {
+            scrapedData = data;
+        }).then(() => {
+            console.log(typeof scrapedData);
+            console.log(scrapedData);
+            scrapedData.sort((a, b) => {
+                return b[0] - a[0];
+            });
+            console.log(scrapedData);
+            let myLabels = [];
+            let myData = [];
+            scrapedData.map((el) => {
+                myLabels.push(el[1]);
+                myData.push(el[0]);
+            });
+            
+            let ctx = document.getElementById("myChart").getContext('2d');
+            let myChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: myLabels,
+                    datasets: [{
+                        label: 'Number of Keyword Instances',
+                        data: myData,
+                        backgroundColor: 'rgba(0, 0, 255, 1)'
+                    }]
+                },
+                options: {
+                    scales: {
+                        yAxes: [{
+                            ticks: {
+                                beginAtZero: true
+                            }
+                        }]
+                    }
+                }
+            });
+        });
     </script>
 </body>
+
 </html>

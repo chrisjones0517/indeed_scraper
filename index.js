@@ -7,7 +7,7 @@ const state = 'TX';
 const city = 'Houston';
 const url = `https://www.indeed.com/jobs?q=web+developer&l=${city}%2C+${state}`;
 // const selector = '#resultsCol';
-let countArray = [['javascript', 0], ['node', 0], ['php', 0], ['html', 0], ['react', 0], ['vue', 0], ['css', 0], ['boostrap', 0], ['mongo', 0], ['sql', 0], ['angular', 0], ['c#', 0], ['.net', 0], ['python', 0], ['java', 0], ['shell', 0], ['c\\+\\+', 0], [' c ', 0], ['typescript', 0], ['ruby', 0], ['swift', 0], ['wordpress', 0], [' go ', 0], ['assembly', 0], ['matlab', 0], [' r ', 0], ['kotlin', 0], ['scala', 0], ['groovy', 0], ['perl', 0]];
+let countArray = [[0, 'javascript'], [0, 'node'], [0, 'php'], [0, 'html'], [0, 'react'], [0, 'vue'], [0, 'css'], [0, 'boostrap'], [0, 'mongo'], [0, 'sql'], [0, 'angular'], [0, 'c#'], [0, '.net'], [0, 'python'], [0, 'java'], [0, 'shell'], [0, 'c\\+\\+'], [0, ' c '], [0, 'typescript'], [0, 'ruby'], [0, 'swift'], [0, 'wordpress'], [0, ' go '], [0, 'assembly'], [0, 'matlab'], [0, ' r '], [0, 'kotlin'], [0, 'scala'], [0, 'groovy'], [0, 'perl'], [0, 'django'], [0, 'magento'], [0, 'laravel'], [0, 'redux'], [0, 'graphql']];
 let results;
 vo(run)(function (err, result) {
     if (err) throw err;
@@ -50,7 +50,7 @@ function keywordCount(text) {
     text = text.toString();
     
     for (let i = 0; i < countArray.length; i++) {
-        let tech = countArray[i][0];
+        let tech = countArray[i][1];
         let regex = new RegExp(tech, 'gi');
 
         console.log('regex', regex);
@@ -60,7 +60,7 @@ function keywordCount(text) {
         } else {
             currentCount = 0;
         }
-        countArray[i][1] = currentCount;
+        countArray[i][0] = currentCount;
         console.log(currentCount);
     }
     results = countArray;
