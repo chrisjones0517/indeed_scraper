@@ -6,5 +6,8 @@
 ### Use
 ##### To use the app, simple clone it to your local machine, then run ```npm install```. Once the install has completed, run ```node index```, and then wait until the you see data populate into the terminal. Lastly, open your browser to ```localhost:3000```, and the graphical display should be rendered. The user can change any of the query data at the top of the ```index.js``` file to suit his/her search preferences.
 
+### Note:
+##### This application requires a substantial level of processing power. If being run on an older processor, it may be necessary to change the timeout value in the script in ```index.html``` to a value commensurate with available processing power to ensure that the server script has time to run before the client script runs. These scripts will take approximately 1-2 minutes to run on most systems. This is because tens of thousands of lines of text will be processed in the application, as it is currently formatted. In the event that the page loads with no chart, clicking the refresh button will allow the chart to load.
+
 ## Happy Job Hunting!!!
 
